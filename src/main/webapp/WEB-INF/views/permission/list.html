@@ -1,0 +1,71 @@
+#override("title")
+权限管理
+#end
+#override("body")
+<body class="gray-bg">
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>标题</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index-2.html">权限管理</a>
+            </li>
+            <li>
+                <strong>权限管理</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="empty_page.html" class="btn btn-primary">活动区域</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <table id="dataTable"></table>
+        </div>
+    </div>
+</div>
+</body>
+#end  
+#override("js")
+<script type="text/javascript">
+var dataUrl="#springUrl('/permission/getPermissionList.html')";
+var dataColumns = [{
+    field: 'id',
+    title: '序号'
+}, {
+    field: 'title',
+    title: '标题'
+}, {
+    field: 'type',
+    title: '类型'
+},{
+    field: 'state',
+    title: '状态'
+}, {
+    field: 'url',
+    title: '地址'
+}, {
+	field: 'permCode',
+	title: '权限编码'
+}, {
+    field: 'icon',
+    title: '图标'
+}, {
+	field: 'description',
+	title: '描述'
+}];
+function dataQueryParams(params) {
+	console.log(params)
+	return {
+		_size: params.limit,  //页面大小
+		_index: params.offset, //页码
+	};
+}
+</script>
+#end
+#extends("/common/base_list.html")
